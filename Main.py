@@ -1,14 +1,12 @@
 import socket, sys, argparse
 
-def connect_port(target, *port):
+def connect_port(target, port):
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.settimeout(0.5)
+    if client.connect_ex((target, port)) == 0:
+        return  print(f'Aberta: {port}')
 
-    try:
-        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        if client.connect_ex((target, port)) == 0:
-            return 'da'
-    
-    except:
-        return 'daaa'
+  
     
 
 
@@ -36,13 +34,11 @@ ports_common = [20,21,22,25,53,80,123,179,443,500,587,3389]
 
 args_def = define_arguments()
 
-'''if args_def['common'] == True:
+if args_def['common'] == True:
     for p in ports_common:
-        port = connect_port(args_def['domin'], ports_common)
-        print(f'Aberta: {port}')'''
+        port = connect_port(args_def['domin'], p)
 
 
-p = connect_port(args_def['domin'], args_def['port'])
 
-print(p)
+
 
