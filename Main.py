@@ -1,4 +1,4 @@
-import socket, sys, argparse
+import socket,  argparse
 
 def connect_port(target, port):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -42,5 +42,7 @@ if args_def['first'] == True:
 if args_def['port']:
     connect_port(args_def['domin'], int(args_def['port']))
 
-
+if args_def['domin']:
+    for p in range(1, 65536):
+        connect_port(args_def['domin'], p)
 
